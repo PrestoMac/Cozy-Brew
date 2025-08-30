@@ -3,15 +3,18 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
+import { useAuth } from './AuthProvider';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, signOut } = useAuth();
 
   const navItems = [
     { to: '/', label: 'Home' },
     { to: '/menu', label: 'Menu' },
     { to: '/about', label: 'About' },
     { to: '/contact', label: 'Contact' },
+    ...(user ? [{ to: '/loyalty', label: 'Loyalty' }] : []),
   ];
 
   return (
@@ -31,27 +34,40 @@ const Header = () => {
             </Link>
           ))}
         </nav>
-        <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="md:hidden">
-              <Menu className="h-6 w-6" />
+        <div className="flex items-center space-x-4">
+          {user ? (
+            <Button onClick={signOut} variant="outline" className="border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white">
+              Logout
             </Button>
-          </SheetTrigger>
-          <SheetContent side="right" className="bg-amber-50">
-            <nav className="flex flex-col space-y-4 mt-8">
-              {navItems.map((item) => (
-                <Link
-                  key={item.to}
-                  to={item.to}
-                  onClick={() => setIsOpen(false)}
-                  className="text-amber-800 hover:text-amber-900 transition-colors"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
-          </SheetContent>
-        </Sheet>
+          ) : (
+            <Link to="/login">
+              <Button className="bg-amber-600 hover:bg-amber-700 text-white">
+                Login
+              </Button>
+            </Link>
+          )}
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="md:hidden">
+                <Menu className="h-6 w-6" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="bg-amber-50">
+              <nav className="flex flex-col space-y-4 mt-8">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    onClick={() => setIsOpen(false)}
+                    className="text-amber-800 hover:text-amber-900 transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </nav>
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
     </header>
   );
