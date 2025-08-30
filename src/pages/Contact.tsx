@@ -40,10 +40,16 @@ const Contact = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-amber-700 mb-4">123 Coffee Street, Brewtown, CA 90210</p>
-                {/* Placeholder for embedded map (e.g., Google Maps iframe) */}
-                <div className="bg-gray-200 h-64 flex items-center justify-center text-amber-700">
-                  [Embedded Map Placeholder - Replace with actual map embed]
-                </div>
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.019112484854!2d-122.419415484681!3d37.774929779759!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808c3b3c3c3c%3A0x3c3c3c3c3c3c3c3c!2s123%20Coffee%20Street%2C%20Brewtown%2C%20CA%2090210!5e0!3m2!1sen!2sus!4v1690000000000!5m2!1sen!2sus"
+                  width="100%"
+                  height="300"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Location Map"
+                ></iframe>
               </CardContent>
             </Card>
           </div>

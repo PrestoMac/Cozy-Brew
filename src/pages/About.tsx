@@ -3,9 +3,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 const teamMembers = [
-  { name: 'Alice Johnson', role: 'Founder & Barista', bio: 'Passionate about coffee since 2010.', image: '/placeholder.svg' },
-  { name: 'Bob Smith', role: 'Head Chef', bio: 'Crafting delicious food pairings for our brews.', image: '/placeholder.svg' },
-  { name: 'Charlie Lee', role: 'Customer Service Lead', bio: 'Ensuring every visit is warm and welcoming.', image: '/placeholder.svg' },
+  { name: 'Alice Johnson', role: 'Founder & Barista', bio: 'Passionate about coffee since 2010.', image: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
+  { name: 'Bob Smith', role: 'Head Chef', bio: 'Crafting delicious food pairings for our brews.', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
+  { name: 'Charlie Lee', role: 'Customer Service Lead', bio: 'Ensuring every visit is warm and welcoming.', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
 ];
 
 const About = () => {
