@@ -9,6 +9,8 @@ import Footer from "./components/Footer";
 import Index from "./pages/Index";
 import Menu from "./pages/Menu";
 import About from "./pages/About";
+import Gallery from "./pages/Gallery";
+import Events from "./pages/Events";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Loyalty from "./pages/Loyalty";
@@ -28,6 +30,8 @@ const App = () => (
                 <Route path="/" element={<Index />} />
                 <Route path="/menu" element={<Menu />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/gallery" element={<Gallery />} />
+                <Route path="/events" element={<Events />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/loyalty" element={<Loyalty />} />
