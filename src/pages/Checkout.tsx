@@ -56,16 +56,24 @@ const Checkout = () => {
     } else {
       // Earn loyalty points (1 point per $1 spent)
       const pointsEarned = Math.floor(getTotal());
-      const { error: loyaltyError } = await supabase
+      const { data: currentData } = await supabase
         .from('loyalty_points')
-        .update({
-          points: supabase.raw('points + ?', [pointsEarned]),
-          updated_at: new Date().toISOString()
-        })
-        .eq('user_id', user.id);
+        .select('points')
+        .eq('user_id', user.id)
+        .single();
 
-      if (loyaltyError) {
-        console.error('Failed to update loyalty points:', loyaltyError);
+      if (currentData) {
+        const { error: loyaltyError } = await supabase
+          .from('loyalty_points')
+          .update({
+            points: currentData.points + pointsEarned,
+            updated_at: new Date().toISOString()
+          })
+          .eq('user_id', user.id);
+
+        if (loyaltyError) {
+          console.error('Failed to update loyalty points:', loyaltyError);
+        }
       }
 
       toast({ title: 'Success', description: `Order placed! Earned ${pointsEarned} loyalty points.` });
